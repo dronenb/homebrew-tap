@@ -12,6 +12,8 @@ cask "m-air-edit" do
 
   app "M-AIR-Edit.app"
 
+  uninstall quit: "com.musictribe.M-AIR-Edit"
+
   zap trash: [
     "~/Library/.M-AIR-Edit",
     "~/Library/Preferences/com.musictribe.M-AIR-Edit.plist",

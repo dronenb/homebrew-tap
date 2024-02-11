@@ -12,6 +12,8 @@ cask "x32-edit" do
 
   app "X32-Edit_#{version}/X32-Edit.app"
 
+  uninstall quit: "com.musictribe.X32-Edit"
+
   zap trash: [
     "~/Library/.X32-Edit",
     "~/Library/Preferences/com.musictribe.X32-Edit.plist",
