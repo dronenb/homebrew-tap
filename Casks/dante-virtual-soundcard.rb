@@ -18,5 +18,5 @@ cask "dante-virtual-soundcard" do
                     sudo: true
   end
 
-  uninstall delete: "/Applications/Uninstall DVS.app"
+  uninstall quit: "com.audinate.DanteVirtualSoundcard"
 end
