@@ -12,6 +12,12 @@ cask "companion" do
 
   app "Companion.app"
 
+  uninstall_postflight do
+    system_command "pkill", args: ["-f", "Companion.app"]
+  end
+
+  uninstall quit: "test-companion.bitfocus.no"
+
   zap trash: [
     "~/Library/Application Support/companion",
     "~/Library/Application Support/companion-launcher",
