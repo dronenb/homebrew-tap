@@ -16,6 +16,8 @@ cask "reolink-client" do
     strategy :electron_builder
   end
 
+  auto_updates true
+
   app "Reolink.app"
 
   uninstall quit:   "com.reolink.client",
