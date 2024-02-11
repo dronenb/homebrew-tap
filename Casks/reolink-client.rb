@@ -20,12 +20,14 @@ cask "reolink-client" do
 
   app "Reolink.app"
 
-  uninstall quit:   "com.reolink.client",
-            delete: "/Library/Logs/DiagnosticReports/Reolink Client_*.wakeups_resource.diag"
+  uninstall quit: "com.reolink.app"
 
   zap trash: [
-    "~/Library/Application Support/Reolink Client",
+    "~/Library/Application Support/com.reolink.app.client",
+    "~/Library/Application Support/reolink",
+    "~/Library/Logs/reolink",
+    "~/Library/Preferences/ByHost/com.reolink.app.ShipIt.*.plist",
     "~/Library/Preferences/com.reolink.client.plist",
-    "~/Library/Saved Application State/com.reolink.client.savedState",
+    "~/Library/Saved Application State/com.reolink.app.savedState",
   ]
 end
