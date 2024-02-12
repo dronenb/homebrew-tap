@@ -9,15 +9,10 @@ cask "ql-editor" do
 
   auto_updates false
 
-  app "ql_edt#{version.no_dots}_mac/Uninstall QL Editor.app"
   pkg "ql_edt#{version.no_dots}_mac/Install QL Editor V#{version}.pkg"
 
-  uninstall_preflight do
-    system_command  "#{appdir}/Uninstall QL Editor.app/Contents/Resources/Scripts/delpkg.sh",
-                    sudo: true
-  end
-
-  uninstall quit: "com.yamaha.pa.qleditor"
+  uninstall quit:    "com.yamaha.pa.qleditor",
+            pkgutil: "com.yamaha.pkg.qleditor"
 
   zap trash: [
     "~/Library/Preferences/com.yamaha.QL Editor.plist",

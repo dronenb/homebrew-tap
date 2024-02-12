@@ -9,15 +9,10 @@ cask "tf-editor" do
 
   auto_updates false
 
-  app "Uninstall TF Editor.app"
   pkg "Install TF Editor V#{version}.pkg"
 
-  uninstall_preflight do
-    system_command  "#{appdir}/Uninstall TF Editor.app/Contents/Resources/Scripts/delpkg.sh",
-                    sudo: true
-  end
-
-  uninstall quit: "jp.co.yamaha.pa.tfeditor"
+  uninstall quit:    "com.yamaha.pa.qleditor",
+            pkgutil: "com.yamaha.pkg.qleditor"
 
   zap trash: "~/Library/Saved Application State/jp.co.yamaha.pa.tfeditor.savedState"
 end
