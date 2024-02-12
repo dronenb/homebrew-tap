@@ -9,15 +9,10 @@ cask "cl-editor" do
 
   auto_updates false
 
-  app "cl_edt#{version.no_dots}_mac/Uninstall CL Editor.app"
   pkg "cl_edt#{version.no_dots}_mac/Install CL Editor V#{version}.pkg"
 
-  uninstall_preflight do
-    system_command  "#{appdir}/Uninstall CL Editor.app/Contents/Resources/Scripts/delpkg.sh",
-                    sudo: true
-  end
-
-  uninstall quit: "com.yamaha.pa.cleditor"
+  uninstall quit:    "com.yamaha.pa.cleditor",
+            pkgutil: "com.yamaha.pkg.cleditor"
 
   zap trash: [
     "~/Library/Preferences/com.yamaha.CL Editor.plist",

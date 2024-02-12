@@ -10,13 +10,11 @@ cask "dante-virtual-soundcard" do
 
   auto_updates true
 
-  app "Uninstall DVS.app"
   pkg "DanteVirtualSoundcard.pkg"
 
-  uninstall_preflight do
-    system_command  "#{appdir}/Uninstall DVS.app/Contents/Resources/uninstall.sh",
-                    sudo: true
-  end
-
-  uninstall quit: "com.audinate.DanteVirtualSoundcard"
+  uninstall quit:   "com.audinate.DanteVirtualSoundcard",
+            script: {
+              executable: "/Library/Application Support/Audinate/DanteVirtualSoundcard/Uninstall DVS.app/Contents/Resources/uninstall.sh",
+              sudo:       true,
+            }
 end
