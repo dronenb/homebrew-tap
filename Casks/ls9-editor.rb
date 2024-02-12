@@ -20,4 +20,8 @@ cask "ls9-editor" do
     "~/Library/Preferences/com.yamaha.ls9.plist",
     "~/Library/Saved Application State/com.yamaha.ls9editor.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end
