@@ -8,6 +8,11 @@ cask "dante-virtual-soundcard" do
   desc "Turns your computer into a Dante-powered workstation"
   homepage "https://www.audinate.com/products/software/dante-virtual-soundcard"
 
+  livecheck do
+    url "https://software-updates.audinate.com/DanteVirtualSoundcard/appcast/macOS/DanteVirtualSoundcard-macOS.xml"
+    strategy :sparkle
+  end
+
   auto_updates true
 
   pkg "DanteVirtualSoundcard.pkg"
