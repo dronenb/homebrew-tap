@@ -15,4 +15,8 @@ cask "tf-editor" do
             pkgutil: "com.yamaha.pkg.qleditor"
 
   zap trash: "~/Library/Saved Application State/jp.co.yamaha.pa.tfeditor.savedState"
+
+  caveats do
+    requires_rosetta
+  end
 end

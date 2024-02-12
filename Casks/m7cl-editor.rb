@@ -20,4 +20,8 @@ cask "m7cl-editor" do
     "~/Library/Preferences/com.yamaha.m7cl.plist",
     "~/Library/Saved Application State/com.yamaha.m7cleditor.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

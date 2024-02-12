@@ -18,4 +18,8 @@ cask "cl-editor" do
     "~/Library/Preferences/com.yamaha.CL Editor.plist",
     "~/Library/Saved Application State/com.yamaha.pa.cleditor.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end

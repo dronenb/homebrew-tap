@@ -18,4 +18,8 @@ cask "ql-editor" do
     "~/Library/Preferences/com.yamaha.QL Editor.plist",
     "~/Library/Saved Application State/com.yamaha.pa.qleditor.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end
