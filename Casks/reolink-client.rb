@@ -30,4 +30,8 @@ cask "reolink-client" do
     "~/Library/Preferences/com.reolink.client.plist",
     "~/Library/Saved Application State/com.reolink.app.savedState",
   ]
+
+  caveats do
+    requires_rosetta
+  end
 end
