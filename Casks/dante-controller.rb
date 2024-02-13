@@ -28,6 +28,7 @@ cask "dante-controller" do
 
   zap trash: [
     "~/Library/Application Support/Dante Controller",
+    "~/Library/HTTPStorages/com.audinate.dante.DanteController",
     "~/Library/Logs/Audinate/DanteController*.log",
     "~/Library/Preferences/com.audinate.dante.controller.plist",
     "~/Library/Saved Application State/com.audinate.dante.DanteController.savedState",
