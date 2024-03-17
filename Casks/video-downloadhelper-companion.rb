@@ -1,7 +1,7 @@
 cask "video-downloadhelper-companion" do
   arch arm: "arm64", intel: "x86_64"
 
-  version "2.0.17"
+  version "2.0.19"
 
   on_mojave :or_older do
     sha256  intel: "1d826c8456424445309dac74054f0d954dab2eb089c75ef217de0b08c32dd5c5"
@@ -11,8 +11,8 @@ cask "video-downloadhelper-companion" do
     pkg "vdhcoapp-mac13-#{arch}-installer.pkg"
   end
   on_catalina :or_newer do
-    sha256  arm:   "e67e33c46fd6e8a6c08647ee16c4f77746a234bf06a3cff9d2fa771f666a6d57",
-            intel: "e043cb2e255836ad749ab626ef34d186cb9df66741728af9dde67a8c7308dffb"
+    sha256  arm:   "be91d5896db29724389c79bc8ce2b1b257bf7516068755aa2a4027c87c82eb9b",
+            intel: "3e4c513c368aa426d9713c857778996773014bcf1874c909c80cfb6ec96de50e"
 
     url "https://github.com/aclap-dev/vdhcoapp/releases/download/v#{version}/vdhcoapp-mac-#{arch}-installer.pkg"
 
