@@ -2,22 +2,22 @@ class Nmstatectl < Formula
   desc "Command-line tool that manages host networking settings in a declarative manner"
   homepage "https://github.com/nmstate/nmstate"
   url "https://github.com/nmstate/nmstate/releases"
-  version "2.2.27"
+  version "2.2.38"
   on_macos do
     if Hardware::CPU.intel?
       url "https://github.com/nmstate/nmstate/releases/download/v#{version}/nmstatectl-macos-x64.zip"
-      sha256 "1bfc4f767ef01ab5069bd750c28b7b0a8b19dd9255ccd0ea94628e952e449fba"
+      sha256 "c0c94c4c7b4d3dbd7059c8d0da7d93812a1fcbc884214920bdd5162f277a3a71"
     end
     if Hardware::CPU.arm?
       url "https://github.com/nmstate/nmstate/releases/download/v#{version}/nmstatectl-macos-aarch64.zip"
-      sha256 "e13ff659a4e0b52ce5eb30741e575a91d830075a5e5a93301115531f1a60413b"
+      sha256 "b6b06fa5b1cb6e776277ce558b7a9b8efa1c497adf716336d066f95954920d62"
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
       url "https://github.com/nmstate/nmstate/releases/download/v#{version}/nmstatectl-linux-x64.zip"
-      sha256 "16c5045559541e10c3d4c8793954c13f80cb66619e68be46696e286e4b9ef2f4"
+      sha256 "c6a3ed7f0a2d284b78cada49e2c3abeb2b366511f4c8ee19b2b7377ec2806675"
     end
   end
 
