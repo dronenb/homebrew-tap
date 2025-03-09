@@ -1,6 +1,6 @@
 cask "shure-wireless-workbench" do
-  version "7.2.0"
-  sha256 "6256ed031d21380dbdfc1049e9e5b3b662fcc7dbdfdd767f52ad4a3051298b42"
+  version "7.4.0"
+  sha256 "fd986856c7c8ef8b2df6af8ebca67814d7cb83ddb0bd619eaf4e91e754c5ef1c"
 
   url "https://content-files.shure.com/Software/wireless-workbench/#{version.dots_to_hyphens}/Wireless-Workbench-macOS-#{version}.pkg"
   name "Shure Wireless Workbench"
