@@ -1,6 +1,6 @@
 cask "m-air-edit" do
-  version "1.8"
-  sha256 "533313d0a657c71537859641e10372d1217a92f15c50265ccb9f0a503f1073fe"
+  version "1.8.1"
+  sha256 "e7d1146f1695146304b8f80719a2dd202cd8501be9b080e7503f557309ece942"
 
   url "https://mediadl.musictribe.com/download/software/midas/M-AIR/M-AIR-Edit_MAC_#{version}.zip",
       verified: "mediadl.musictribe.com/"
