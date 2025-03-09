@@ -14,7 +14,7 @@ cask "companion" do
     app "Companion.app"
 
     uninstall_postflight do
-      system_command "pkill", args: ["-f", "Companion.app"]
+      system_command "pkill", args: ["-f", "Companion.app"] if system("pgrep -f 'Companion.app' > /dev/null")
     end
 
     uninstall quit: "test-companion.bitfocus.no"
