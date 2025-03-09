@@ -1,6 +1,6 @@
 cask "dante-virtual-soundcard" do
-  version "4.4.1.3"
-  sha256 "ff2b5384b4905ed479915e8d4f9a1220abc88a379a0e129d2f76c302c8e72a99"
+  version "4.5.1.1"
+  sha256 "ace833c481ef63f3b91da7a32d9e459905e72b31d0f49091d30165d6b7c4af3c"
 
   url "https://audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/DanteVirtualSoundcard/#{version.major}/#{version.major_minor}/macOS/DVS-#{version}_macos.dmg",
       verified: "audinate-software-updates.sgp1.cdn.digitaloceanspaces.com/"
