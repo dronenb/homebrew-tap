@@ -1,28 +1,22 @@
 class Nmstatectl < Formula
   desc "Command-line tool that manages host networking settings in a declarative manner"
-  homepage "https://github.com/nmstate/nmstate"
-  url "https://github.com/nmstate/nmstate/releases"
-  version "2.2.39"
-  on_macos do
-    if Hardware::CPU.intel?
-      url "https://github.com/nmstate/nmstate/releases/download/v#{version}/nmstatectl-macos-x64.zip"
-      sha256 "4b8e9a9988de337053987f7d5f3024e61f0498653742cfa30a62324eacca0799"
-    end
-    if Hardware::CPU.arm?
-      url "https://github.com/nmstate/nmstate/releases/download/v#{version}/nmstatectl-macos-aarch64.zip"
-      sha256 "c6e5210b62eb8ed005712ded9318f85a6f5df8682e30ca03e73631b9f61371b1"
-    end
-  end
+  homepage "https://nmstate.io/"
+  url "https://github.com/nmstate/nmstate.git",
+    tag:      "v2.2.42",
+    revision: "cfec22f532a03aaeeaa5afb459e7f25195c35291"
+  license "Apache-2.0"
+  head "https://github.com/nmstate/nmstate.git", branch: "base"
 
-  on_linux do
-    if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/nmstate/nmstate/releases/download/v#{version}/nmstatectl-linux-x64.zip"
-      sha256 "8b563db85c145d814f531e1d998dc0db53c4c16d8b7cf73da89308dda82913c6"
-    end
-  end
+  depends_on "rust" => :build
+  depends_on "rustup" => :build
 
   def install
-    bin.install "nmstatectl"
+    system "rustup", "default", "stable"
+    system "rustup", "update"
+    cd "rust/src/cli" do
+      system "cargo", "install", "--no-default-features", "--features", "gen_conf", *std_cargo_args if OS.mac?
+      system "cargo", "install", *std_cargo_args if OS.linux?
+    end
   end
 
   test do
