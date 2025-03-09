@@ -8,11 +8,15 @@ class Crc < Formula
   head "https://github.com/crc-org/crc.git", branch: "main"
 
   depends_on "go" => :build
-
+  on_macos do
+    conflicts_with "vfkit", because: "both install `vfkit` executable"
+  end
   def install
     if OS.mac?
-      system "make", "macos-release-binary"
-      bin.install "out/macos-universal/crc"
+      system "make", "packagedir"
+      bin.install "packaging/darwin/root-crc/usr/local/crc/crc"
+      bin.install "packaging/darwin/root-crc/usr/local/crc/crc-admin-helper-darwin"
+      bin.install "packaging/darwin/root-crc/usr/local/crc/vfkit"
     end
     if OS.linux?
       system "make", "linux-release-binary"
@@ -37,6 +41,6 @@ class Crc < Formula
   end
 
   test do
-    system "#{opt_bin}/crc", "version"
+    system bin/"crc", "version"
   end
 end
