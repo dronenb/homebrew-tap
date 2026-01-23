@@ -1,9 +1,9 @@
-cask "reolink-client" do
-  version "8.17.8"
+cask "reolink" do
+  version "8.19.7"
   # For calculating SHA256:
-  # curl -sL https://home-cdn.reolink.us/files/client/electron-release/Reolink-8.13.1-mac.zip |  \
+  # curl -sL https://home-cdn.reolink.us/files/client/electron-release/Reolink-8.19.7-mac.zip |  \
   #   shasum -a 256 - | awk '{print $1}' | tr -d '\n' | pbcopy
-  sha256 "7b7d6a6d70a173e3b34338336e713d2f44efb359e55665a79aa207bc9d214b28"
+  sha256 "b3577c531d4c05e0f45f90b02224c81684be9f4083720a01cc05bfa07107fc93"
 
   url "https://home-cdn.reolink.us/files/client/electron-release/Reolink-#{version}-mac.zip",
       verified: "home-cdn.reolink.us/"
