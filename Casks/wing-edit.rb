@@ -1,6 +1,6 @@
 cask "wing-edit" do
-  version "3.1"
-  sha256 "d5cd28c8c20432dedc6e56351c5e8bf3e6ad01bfb21a19fede2038749292f2a9"
+  version "3.3.1"
+  sha256 "1aedb084f4f1b94d9e8f4b0382dea9ce84499905b98859f47aa05b7024a01685"
 
   url "https://mediadl.musictribe.com/download/software/behringer/WING/EDIT/Wing-Edit_MAC_#{version}.zip",
       verified: "mediadl.musictribe.com/"

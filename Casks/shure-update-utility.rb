@@ -1,6 +1,6 @@
 cask "shure-update-utility" do
-  version "2.8.8"
-  sha256 "54a637975f07a5c6b96d7461a4978c50d2d180f99260abd70f03487c02987876"
+  version "2.8.13"
+  sha256 "9a458b57d6fb92eae8256a49aad4a220057c16e76988663b072aa4b04a9fd475"
 
   url "https://content-files.shure.com/Software/shure-update-utility/#{version.dots_to_hyphens}/Shure-Update-Utility-macOS-#{version}.pkg"
   name "Shure Update Utility"

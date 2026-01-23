@@ -1,7 +1,7 @@
 class Alertmanager < Formula
   desc "Prometheus Alertmanager"
   homepage "https://prometheus.io/docs/alerting/latest/alertmanager/"
-  url "https://github.com/prometheus/alertmanager/archive/refs/tags/v0.28.1.tar.gz"
+  url "https://github.com/prometheus/alertmanager/archive/refs/tags/v0.30.1.tar.gz"
   sha256 "af1a0090fa351fdc21e894278f3690cfd82575ad9354c32a76489b3d50ee6fa2"
   license "Apache-2.0"
 
