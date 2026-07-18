@@ -1,25 +1,61 @@
 class Alertmanager < Formula
   desc "Prometheus Alertmanager"
   homepage "https://prometheus.io/docs/alerting/latest/alertmanager/"
-  url "https://github.com/prometheus/alertmanager/archive/refs/tags/v0.30.1.tar.gz"
-  sha256 "b3577c531d4c05e0f45f90b02224c81684be9f4083720a01cc05bfa07107fc93"
+  url "https://github.com/prometheus/alertmanager/archive/refs/tags/v0.33.1.tar.gz"
+  sha256 "dfe372ecee0704e59e166a6d72f11a689d6b8756366696a0af9fdf801059129b"
   license "Apache-2.0"
 
   depends_on "go" => :build
 
-  def install
-    # Build and install Alertmanager binary
-    system "go", "build", *std_go_args(output: bin/"alertmanager"), "./cmd/alertmanager"
+  resource "web_ui" do
+    url "https://github.com/prometheus/alertmanager/releases/download/v0.33.1/alertmanager-web-ui-0.33.1.tar.gz"
+    sha256 "1f63344e196e47ba7bfe27276f44c1da77e39fb76493e42b2cf0a50ca8f04321"
+  end
 
-    # Build and install amtool binary
-    system "go", "build", *std_go_args(output: bin/"amtool"), "./cmd/amtool"
+  def install
+    resource("web_ui").stage do
+      cp_r Pathname.pwd, buildpath/"ui/app/dist"
+    end
+
+    ldflags = %W[
+      -s -w
+      -X github.com/prometheus/common/version.Version=#{version}
+      -X github.com/prometheus/common/version.Revision=2c8da51e03f3dbbed24f9711ca2d76aab4eef9c5
+      -X github.com/prometheus/common/version.Branch=HEAD
+      -X github.com/prometheus/common/version.BuildUser=homebrew
+      -X github.com/prometheus/common/version.BuildDate=19700101-00:00:00
+    ]
+
+    system "go", "build", *std_go_args(output: bin/"alertmanager", ldflags:), "./cmd/alertmanager"
+    system "go", "build", *std_go_args(output: bin/"amtool", ldflags:), "./cmd/amtool"
   end
 
   test do
-    # Test Alertmanager binary
-    assert_match "alertmanager, version", shell_output("#{bin}/alertmanager --version")
+    require "net/http"
 
-    # Test amtool binary
-    assert_match "amtool, version", shell_output("#{bin}/amtool --version")
+    assert_match "alertmanager, version #{version}", shell_output("#{bin}/alertmanager --version")
+    assert_match "amtool, version #{version}", shell_output("#{bin}/amtool --version")
+
+    (testpath/"alertmanager.yml").write <<~YAML
+      route:
+        receiver: default
+      receivers:
+        - name: default
+    YAML
+
+    assert_match "SUCCESS", shell_output("#{bin}/amtool check-config #{testpath}/alertmanager.yml")
+
+    port = free_port
+    pid = fork do
+      exec bin/"alertmanager", "--config.file=#{testpath}/alertmanager.yml",
+                               "--storage.path=#{testpath}/data",
+                               "--cluster.listen-address=",
+                               "--web.listen-address=127.0.0.1:#{port}"
+    end
+    sleep 3
+    assert_equal "OK", Net::HTTP.get(URI("http://127.0.0.1:#{port}/-/ready"))
+  ensure
+    Process.kill("TERM", pid) if pid
+    Process.wait(pid) if pid
   end
 end

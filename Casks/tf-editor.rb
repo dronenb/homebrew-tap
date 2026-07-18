@@ -8,6 +8,7 @@ cask "tf-editor" do
   homepage "https://usa.yamaha.com/support/updates/tf_edt_mac.html"
 
   auto_updates false
+  depends_on :macos
 
   pkg "Install TF Editor V#{version}.pkg"
 

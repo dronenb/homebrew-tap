@@ -8,6 +8,7 @@ cask "kinesis-smartset" do
   homepage "https://gaming.kinesis-ergo.com/fs-edge-rgb-support/#smartset"
 
   auto_updates false
+  depends_on :macos
 
   app "SmartSet App #{version.major_minor} by Kinesis Gaming (macOS v#{version}).app"
 

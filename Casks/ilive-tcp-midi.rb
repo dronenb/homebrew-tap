@@ -8,6 +8,7 @@ cask "ilive-tcp-midi" do
   homepage "https://www.allen-heath.com/hardware/legacy-products/ilive/resources/"
 
   auto_updates false
+  depends_on :macos
 
   pkg "A&H TCP MIDI Driver Installer.pkg"
 
