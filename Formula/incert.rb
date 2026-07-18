@@ -2,8 +2,8 @@ class Incert < Formula
   desc "Add CA certificates into containers"
   homepage "https://github.com/chainguard-dev/incert"
   url "https://github.com/chainguard-dev/incert.git",
-      tag:      "v0.5.0",
-      revision: "7e639077cf3f132531e1231cb4adeb16b4ab6417"
+      tag:      "v0.6.0",
+      revision: "2cf0e57a6c41daf5f6d40120d2f14e1f6009a66f"
   license "Apache-2.0"
   head "https://github.com/chainguard-dev/incert.git", branch: "main"
 

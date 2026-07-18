@@ -9,7 +9,7 @@ cask "ls9-editor" do
 
   auto_updates false
   depends_on  cask:  "dronenb/tap/yamaha-network-midi",
-              macos: ">= :catalina"
+              macos: :catalina
 
   pkg "ls9_edt#{version.no_dots}_osx/Install LS9 Editor V#{version}.pkg"
 

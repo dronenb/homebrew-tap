@@ -8,7 +8,7 @@ cask "yamaha-network-midi" do
   homepage "https://usa.yamaha.com/support/updates/nwd_mac.html"
 
   auto_updates false
-  depends_on macos: ">= :catalina"
+  depends_on macos: :catalina
 
   pkg "Yamaha Network-MIDI Driver V#{version}.pkg"
 

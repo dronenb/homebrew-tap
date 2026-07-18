@@ -9,7 +9,7 @@ cask "m7cl-editor" do
 
   auto_updates false
   depends_on  cask:  "dronenb/tap/yamaha-network-midi",
-              macos: ">= :catalina"
+              macos: :catalina
 
   pkg "m7clv3_edt#{version.no_dots}_osx/Install M7CL V3 Editor V#{version}.pkg"
 

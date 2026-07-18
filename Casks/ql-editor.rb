@@ -8,6 +8,7 @@ cask "ql-editor" do
   homepage "https://usa.yamaha.com/products/proaudio/software/ql_editor/index.html"
 
   auto_updates false
+  depends_on :macos
 
   pkg "ql_edt#{version.no_dots}_mac/Install QL Editor V#{version}.pkg"
 

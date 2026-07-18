@@ -8,6 +8,7 @@ cask "ilive-editor" do
   homepage "https://www.allen-heath.com/hardware/legacy-products/ilive/resources/"
 
   auto_updates false
+  depends_on :macos
 
   pkg "iLiveEditor#{version}.pkg"
 

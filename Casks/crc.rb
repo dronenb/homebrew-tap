@@ -15,6 +15,7 @@ cask "crc" do
   end
 
   auto_updates false
+  depends_on :macos
 
   pkg "crc-macos-installer.pkg"
 

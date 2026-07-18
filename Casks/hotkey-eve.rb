@@ -9,6 +9,7 @@ cask "hotkey-eve" do
   homepage "https://github.com/Togo/hotkeyEVE"
 
   auto_updates true
+  depends_on :macos
 
   app "EVE.app"
 

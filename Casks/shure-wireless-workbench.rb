@@ -8,6 +8,7 @@ cask "shure-wireless-workbench" do
   homepage "https://www.shure.com/en-US/products/software/wwb"
 
   auto_updates false
+  depends_on :macos
 
   pkg "Wireless-Workbench-macOS-#{version}.pkg"
 

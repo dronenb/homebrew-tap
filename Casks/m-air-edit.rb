@@ -9,6 +9,7 @@ cask "m-air-edit" do
   homepage "https://www.midasconsoles.com/downloads.html"
 
   auto_updates false
+  depends_on :macos
 
   app "M-AIR-Edit.app"
 

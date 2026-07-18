@@ -8,6 +8,7 @@ cask "cl-editor" do
   homepage "https://usa.yamaha.com/products/proaudio/software/cl_editor/index.html"
 
   auto_updates false
+  depends_on :macos
 
   pkg "cl_edt#{version.no_dots}_mac/Install CL Editor V#{version}.pkg"
 

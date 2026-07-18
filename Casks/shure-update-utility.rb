@@ -8,6 +8,7 @@ cask "shure-update-utility" do
   homepage "https://www.shure.com/en-US/products/software/shure_update_utility"
 
   auto_updates false
+  depends_on :macos
 
   pkg "Shure-Update-Utility-macOS-#{version}.pkg"
 
