@@ -11,6 +11,8 @@ class Incert < Formula
   depends_on "crane" => :test
 
   def install
+    ENV["CGO_ENABLED"] = "0"
+
     ldflags = %w[
       -s -w
     ]
