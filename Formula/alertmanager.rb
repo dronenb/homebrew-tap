@@ -31,7 +31,31 @@ class Alertmanager < Formula
   end
 
   test do
-    assert_match "alertmanager, version", shell_output("#{bin}/alertmanager --version")
-    assert_match "amtool, version", shell_output("#{bin}/amtool --version")
+    require "net/http"
+
+    assert_match "alertmanager, version #{version}", shell_output("#{bin}/alertmanager --version")
+    assert_match "amtool, version #{version}", shell_output("#{bin}/amtool --version")
+
+    (testpath/"alertmanager.yml").write <<~YAML
+      route:
+        receiver: default
+      receivers:
+        - name: default
+    YAML
+
+    assert_match "SUCCESS", shell_output("#{bin}/amtool check-config #{testpath}/alertmanager.yml")
+
+    port = free_port
+    pid = fork do
+      exec bin/"alertmanager", "--config.file=#{testpath}/alertmanager.yml",
+                               "--storage.path=#{testpath}/data",
+                               "--cluster.listen-address=",
+                               "--web.listen-address=127.0.0.1:#{port}"
+    end
+    sleep 3
+    assert_equal "OK", Net::HTTP.get(URI("http://127.0.0.1:#{port}/-/ready"))
+  ensure
+    Process.kill("TERM", pid) if pid
+    Process.wait(pid) if pid
   end
 end
