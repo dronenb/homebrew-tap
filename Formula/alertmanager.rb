@@ -7,19 +7,22 @@ class Alertmanager < Formula
 
   depends_on "go" => :build
 
-  def install
-    # Build and install Alertmanager binary
-    system "go", "build", *std_go_args(output: bin/"alertmanager"), "./cmd/alertmanager"
+  resource "web_ui" do
+    url "https://github.com/prometheus/alertmanager/releases/download/v0.33.1/alertmanager-web-ui-0.33.1.tar.gz"
+    sha256 "1f63344e196e47ba7bfe27276f44c1da77e39fb76493e42b2cf0a50ca8f04321"
+  end
 
-    # Build and install amtool binary
+  def install
+    resource("web_ui").stage do
+      cp_r Pathname.pwd, buildpath/"ui/app/dist"
+    end
+
+    system "go", "build", *std_go_args(output: bin/"alertmanager"), "./cmd/alertmanager"
     system "go", "build", *std_go_args(output: bin/"amtool"), "./cmd/amtool"
   end
 
   test do
-    # Test Alertmanager binary
     assert_match "alertmanager, version", shell_output("#{bin}/alertmanager --version")
-
-    # Test amtool binary
     assert_match "amtool, version", shell_output("#{bin}/amtool --version")
   end
 end
