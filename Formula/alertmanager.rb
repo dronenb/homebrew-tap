@@ -17,8 +17,17 @@ class Alertmanager < Formula
       cp_r Pathname.pwd, buildpath/"ui/app/dist"
     end
 
-    system "go", "build", *std_go_args(output: bin/"alertmanager"), "./cmd/alertmanager"
-    system "go", "build", *std_go_args(output: bin/"amtool"), "./cmd/amtool"
+    ldflags = %W[
+      -s -w
+      -X github.com/prometheus/common/version.Version=#{version}
+      -X github.com/prometheus/common/version.Revision=2c8da51e03f3dbbed24f9711ca2d76aab4eef9c5
+      -X github.com/prometheus/common/version.Branch=HEAD
+      -X github.com/prometheus/common/version.BuildUser=homebrew
+      -X github.com/prometheus/common/version.BuildDate=19700101-00:00:00
+    ]
+
+    system "go", "build", *std_go_args(output: bin/"alertmanager", ldflags:), "./cmd/alertmanager"
+    system "go", "build", *std_go_args(output: bin/"amtool", ldflags:), "./cmd/amtool"
   end
 
   test do
