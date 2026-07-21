@@ -24,12 +24,11 @@ class Crc < Formula
 
   def caveats
     <<~EOS
-      To complete the setup, add the following entries to /etc/hosts manually:
+      To prepare your host for CRC, run:
+        crc setup
 
-        127.0.0.1        api.crc.testing canary-openshift-ingress-canary.apps-crc.testing console-openshift-console.apps-crc.testing default-route-openshift-image-registry.apps-crc.testing downloads-openshift-console.apps-crc.testing host.crc.testing oauth-openshift.apps-crc.testing
-
-      You can do this with the following command:
-        echo -ne "\\n# Added by CRC\\n127.0.0.1        api.crc.testing canary-openshift-ingress-canary.apps-crc.testing console-openshift-console.apps-crc.testing default-route-openshift-image-registry.apps-crc.testing downloads-openshift-console.apps-crc.testing host.crc.testing oauth-openshift.apps-crc.testing\\n# End of CRC section\\n" | sudo tee -a /etc/hosts
+      Then start a cluster with:
+        crc start
     EOS
   end
 
