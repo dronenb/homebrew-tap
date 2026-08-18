@@ -1,30 +1,24 @@
 class Alertmanager < Formula
   desc "Prometheus Alertmanager"
   homepage "https://prometheus.io/docs/alerting/latest/alertmanager/"
-  url "https://github.com/prometheus/alertmanager/archive/refs/tags/v0.33.1.tar.gz"
-  sha256 "dfe372ecee0704e59e166a6d72f11a689d6b8756366696a0af9fdf801059129b"
+  url "https://github.com/prometheus/alertmanager/archive/refs/tags/v0.34.0.tar.gz"
+  sha256 "f09117dd6ad62d3f53d2618ba3950ced4a318110b95ce5afe76b7df0ba74000f"
   license "Apache-2.0"
 
   depends_on "go" => :build
-
-  resource "web_ui" do
-    url "https://github.com/prometheus/alertmanager/releases/download/v0.33.1/alertmanager-web-ui-0.33.1.tar.gz"
-    sha256 "1f63344e196e47ba7bfe27276f44c1da77e39fb76493e42b2cf0a50ca8f04321"
-  end
+  depends_on "node" => :build
 
   def install
-    resource("web_ui").stage do
-      cp_r Pathname.pwd, buildpath/"ui/app/dist"
-    end
-
     ldflags = %W[
       -s -w
       -X github.com/prometheus/common/version.Version=#{version}
-      -X github.com/prometheus/common/version.Revision=2c8da51e03f3dbbed24f9711ca2d76aab4eef9c5
+      -X github.com/prometheus/common/version.Revision=085f0ef7eb41da24cab8cd000f1345b6250f2edb
       -X github.com/prometheus/common/version.Branch=HEAD
       -X github.com/prometheus/common/version.BuildUser=homebrew
       -X github.com/prometheus/common/version.BuildDate=19700101-00:00:00
     ]
+
+    system "make", "ui-elm"
 
     system "go", "build", *std_go_args(output: bin/"alertmanager", ldflags:), "./cmd/alertmanager"
     system "go", "build", *std_go_args(output: bin/"amtool", ldflags:), "./cmd/amtool"
