@@ -5,18 +5,11 @@ class Alertmanager < Formula
   sha256 "dfe372ecee0704e59e166a6d72f11a689d6b8756366696a0af9fdf801059129b"
   license "Apache-2.0"
 
+  depends_on "elm" => :build
   depends_on "go" => :build
-
-  resource "web_ui" do
-    url "https://github.com/prometheus/alertmanager/releases/download/v0.33.1/alertmanager-web-ui-0.33.1.tar.gz"
-    sha256 "1f63344e196e47ba7bfe27276f44c1da77e39fb76493e42b2cf0a50ca8f04321"
-  end
+  depends_on "node" => :build
 
   def install
-    resource("web_ui").stage do
-      cp_r Pathname.pwd, buildpath/"ui/app/dist"
-    end
-
     ldflags = %W[
       -s -w
       -X github.com/prometheus/common/version.Version=#{version}
@@ -25,6 +18,13 @@ class Alertmanager < Formula
       -X github.com/prometheus/common/version.BuildUser=homebrew
       -X github.com/prometheus/common/version.BuildDate=19700101-00:00:00
     ]
+
+    cd "ui/app" do
+      inreplace "elm.json", '"elm-version": "0.19.1"', '"elm-version": "0.19.2"'
+      system "npm", "ci", "--ignore-scripts"
+      ln_sf formula_opt_bin("elm")/"elm", "node_modules/.bin/elm"
+      system "npm", "run", "build"
+    end
 
     system "go", "build", *std_go_args(output: bin/"alertmanager", ldflags:), "./cmd/alertmanager"
     system "go", "build", *std_go_args(output: bin/"amtool", ldflags:), "./cmd/amtool"
