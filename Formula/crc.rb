@@ -2,8 +2,8 @@ class Crc < Formula
   desc "Tool to help you run containers"
   homepage "https://crc.dev"
   url "https://github.com/crc-org/crc.git",
-      tag:      "v2.62.0",
-      revision: "70f0c9879a8812cdd6ae19c059ca5816d8de7900"
+      tag:      "v2.63.0",
+      revision: "3a67a3687c5e9013e09a316991f92ef419841481"
   license "Apache-2.0"
   head "https://github.com/crc-org/crc.git", branch: "main"
 
@@ -13,10 +13,10 @@ class Crc < Formula
     ldflags = %W[
       -s -w
       -X github.com/crc-org/crc/v2/pkg/crc/version.crcVersion=#{version}
-      -X github.com/crc-org/crc/v2/pkg/crc/version.ocpVersion=4.22.1
-      -X github.com/crc-org/crc/v2/pkg/crc/version.okdVersion=4.21.0-okd-scos.8
+      -X github.com/crc-org/crc/v2/pkg/crc/version.ocpVersion=4.22.7
+      -X github.com/crc-org/crc/v2/pkg/crc/version.okdVersion=4.22.0-okd-scos.6
       -X github.com/crc-org/crc/v2/pkg/crc/version.microshiftVersion=4.22.0
-      -X github.com/crc-org/crc/v2/pkg/crc/version.commitSha=70f0c9
+      -X github.com/crc-org/crc/v2/pkg/crc/version.commitSha=3a67a3
     ]
 
     system "go", "build", *std_go_args(ldflags:), "-tags=containers_image_openpgp", "./cmd/crc"
@@ -42,8 +42,8 @@ class Crc < Formula
 
     runtime_checks = lambda do
       output = shell_output("#{bin}/crc version")
-      assert_match "CRC version: #{version}+70f0c9", output
-      assert_match "OpenShift version: 4.22.1", output
+      assert_match "CRC version: #{version}+3a67a3", output
+      assert_match "OpenShift version: 4.22.7", output
       assert_match "MicroShift version: 4.22.0", output
 
       system bin/"crc", "config", "set", "disk-size", "32"
