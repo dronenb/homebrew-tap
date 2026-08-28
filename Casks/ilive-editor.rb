@@ -2,6 +2,8 @@ cask "ilive-editor" do
   version "1.95"
   sha256 "e75d043d19f16c0617ba745cba0d625aca2f929f10fda977810559ce88eab92f"
 
+  # Linux download (v1.94): https://www.allen-heath.com/content/uploads/2023/07/iLive-Editor-V194-Linux-x86-Install.zip
+  # Protected by Cloudflare - can't curl this, need to download in browser
   url "https://www.allen-heath.com/content/uploads/2023/07/iLiveEditor#{version}.pkg_.zip?"
   name "iLive Editor"
   desc "Provides a complete interface for offline editing and setup of iLive consoles"
