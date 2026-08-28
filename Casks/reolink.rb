@@ -1,11 +1,11 @@
 cask "reolink" do
-  version "8.20.14"
+  version "8.21.12"
   # For calculating SHA256:
-  # curl -sL https://home-cdn.reolink.us/files/client/electron-release/Reolink-8.20.14-mac.zip |  \
+  # curl -sL https://home-cdn.reolink.us/files/client/electron-release/reolink8.21.12_0-0.zip |  \
   #   shasum -a 256 - | awk '{print $1}' | tr -d '\n' | pbcopy
-  sha256 "9eb2e1e3a4d00d2d879eb832386d25a53929fe88d6fb6605125a4b67449ae22e"
+  sha256 "e4f16b53e6d8be27714115ce95e33de3ee25dcd9fbde9108f30b26c38e7790cc"
 
-  url "https://home-cdn.reolink.us/files/client/electron-release/Reolink-#{version}-mac.zip",
+  url "https://home-cdn.reolink.us/files/client/electron-release/reolink#{version}_0-0.zip",
       verified: "home-cdn.reolink.us/"
   name "Reolink Client"
   desc "Security camera system surveillance software"
