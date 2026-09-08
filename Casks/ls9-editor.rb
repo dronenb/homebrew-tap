@@ -8,8 +8,8 @@ cask "ls9-editor" do
   homepage "https://usa.yamaha.com/products/proaudio/software/ls9_editor/index.html"
 
   auto_updates false
-  depends_on  cask:  "dronenb/tap/yamaha-network-midi",
-              macos: :catalina
+  depends_on :macos
+  depends_on cask: "dronenb/tap/yamaha-network-midi"
 
   pkg "ls9_edt#{version.no_dots}_osx/Install LS9 Editor V#{version}.pkg"
 

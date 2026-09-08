@@ -5,8 +5,7 @@ cask "reolink" do
   #   shasum -a 256 - | awk '{print $1}' | tr -d '\n' | pbcopy
   sha256 "e4f16b53e6d8be27714115ce95e33de3ee25dcd9fbde9108f30b26c38e7790cc"
 
-  url "https://home-cdn.reolink.us/files/client/electron-release/reolink#{version}_0-0.zip",
-      verified: "home-cdn.reolink.us/"
+  url "https://home-cdn.reolink.us/files/client/electron-release/reolink#{version}_0-0.zip"
   name "Reolink Client"
   desc "Security camera system surveillance software"
   homepage "https://reolink.com/software-and-manual/"
