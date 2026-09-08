@@ -14,8 +14,8 @@ cask "ilive-editor" do
 
   pkg "iLiveEditor#{version}.pkg"
 
-  uninstall_postflight do
-    system_command "pkill", args: ["-f", "iLiveEditor#{version}.app"]
+  uninstall_postflight_steps do
+    terminate_process "iLiveEditor#{version}.app", match: :full
   end
 
   uninstall quit:    "com.allenheath.ilivesystemmanager.ciLiveSystemManager",

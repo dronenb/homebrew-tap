@@ -8,8 +8,8 @@ cask "m7cl-editor" do
   homepage "https://usa.yamaha.com/products/proaudio/software/m7cl_v3_editor/index.html"
 
   auto_updates false
-  depends_on  cask:  "dronenb/tap/yamaha-network-midi",
-              macos: :catalina
+  depends_on :macos
+  depends_on cask: "dronenb/tap/yamaha-network-midi"
 
   pkg "m7clv3_edt#{version.no_dots}_osx/Install M7CL V3 Editor V#{version}.pkg"
 
